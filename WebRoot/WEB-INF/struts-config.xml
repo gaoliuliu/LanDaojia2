@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans >
+    <form-bean name="queryModuleForm" type="edu.fudan.struts.form.QueryModuleForm" />
+    <form-bean name="getResultForm" type="edu.fudan.struts.form.GetResultForm" />
+    <form-bean name="searchImgForm" type="edu.fudan.struts.form.SearchImgForm" />
+
+  </form-beans>
+
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+    <action
+      attribute="queryModuleForm"
+      input="/queryModule.jsp"
+      name="queryModuleForm"
+      path="/queryModule"
+      scope="request"
+      type="edu.fudan.struts.action.QueryModuleAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="suc" path="/result.jsp" />
+    </action>
+    <action
+      attribute="getResultForm"
+      input="/result.jsp"
+      name="getResultForm"
+      path="/getResult"
+      scope="request"
+      type="edu.fudan.struts.action.GetResultAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="suc" path="/index.jsp" />
+    </action>
+    <action
+      attribute="searchImgForm"
+      input="/queryModule.jsp"
+      name="searchImgForm"
+      path="/searchImg"
+      scope="request"
+      type="edu.fudan.struts.action.SearchImgAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="suc" path="/searchImg.jsp" />
+    </action>
+
+  </action-mappings>
+
+  <message-resources parameter="edu.fudan.struts.ApplicationResources" />
+</struts-config>
+
