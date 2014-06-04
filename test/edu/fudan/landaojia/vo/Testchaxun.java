@@ -21,7 +21,7 @@ public class Testchaxun extends TestCase{
 
 	public void Test1()
 	{
-		/*System.out.println("开始");
+		System.out.println("开始");
 		ApplicationContext ctx  = new ClassPathXmlApplicationContext("/WEB-INF/applicationContext.xml");
 		QueryModuleResultService mDao = (QueryModuleResultService)ctx.getBean("queryModuleResultServiceImpl");
 		QueryInputService iService = (QueryInputService)ctx.getBean("queryInputServiceImpl");
@@ -43,7 +43,7 @@ public class Testchaxun extends TestCase{
 		
 		List<String> moduleResult = mDao.getModuleResult(ne, moduleId);
 		System.out.println(moduleResult);
-		System.out.println(moduleInput);*/
+		System.out.println(moduleInput);
 		
 	}
 }
