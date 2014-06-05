@@ -7,6 +7,7 @@ package edu.fudan.struts.action;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -49,13 +50,16 @@ public class SearchImgAction extends BaseAction {
 		   
 		FormFile file=searchImgForm.getMyFile();
 		  String name=file.getFileName();
+		  String targetPath = "";
+		  Random random = new Random(100);
+		  targetPath = realPath+"/"+random.nextInt()+name;
 		FileOutputStream fos=null;
 		try {
 		 
 		   byte[] fileData=file.getFileData();
 		   // 获得upfile目录的绝对路径
 		   
-		   fos=new FileOutputStream(realPath+"/"+name);
+		   fos=new FileOutputStream(targetPath);
 		   fos.write(fileData);
 		} catch (Exception e) {
 		   e.printStackTrace();
@@ -71,7 +75,7 @@ public class SearchImgAction extends BaseAction {
 		
 		 String valCode = "";
 		try {
-			valCode = new OCR().recognizeText(new File(realPath+"/"+name), "jpg");
+			valCode = new OCR().recognizeText(new File(targetPath), "jpg");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

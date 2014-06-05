@@ -22,6 +22,7 @@
       type="edu.fudan.struts.action.QueryModuleAction">
       <set-property property="cancellable" value="true" />
       <forward name="suc" path="/result.jsp" />
+      <forward name="err" path="/error.jsp" />
     </action>
     <action
       attribute="getResultForm"

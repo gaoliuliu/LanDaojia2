@@ -49,6 +49,11 @@ public class QueryModuleAction extends BaseAction {
 		ActionForward forward = mapping.getInputForward();
 		QueryInputService service = (QueryInputService) getBean("QueryInputService");
 		List<Moduleinput> moduleIdFromDB = service.getModuleInput(moduleId);
+		if(moduleIdFromDB.size()==0)
+		{
+			forward = mapping.findForward("err");
+			return forward;
+		}
 		for(Moduleinput sc:moduleIdFromDB)
 		{
 			System.out.println(sc.getInput());
