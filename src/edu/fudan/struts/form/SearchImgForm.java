@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
 
-/** 
- * MyEclipse Struts
- * Creation date: 05-27-2014
+/**
+ * MyEclipse Struts Creation date: 05-27-2014
  * 
  * XDoclet definition:
+ * 
  * @struts.form name="searchImgForm"
  */
 public class SearchImgForm extends ActionForm {
@@ -22,14 +23,15 @@ public class SearchImgForm extends ActionForm {
 	 */
 
 	/** filepath property */
-	private String filepath;
+	private FormFile myFile;
 
 	/*
 	 * Generated Methods
 	 */
 
-	/** 
+	/**
 	 * Method validate
+	 * 
 	 * @param mapping
 	 * @param request
 	 * @return ActionErrors
@@ -40,8 +42,9 @@ public class SearchImgForm extends ActionForm {
 		return null;
 	}
 
-	/** 
+	/**
 	 * Method reset
+	 * 
 	 * @param mapping
 	 * @param request
 	 */
@@ -49,19 +52,11 @@ public class SearchImgForm extends ActionForm {
 		// TODO Auto-generated method stub
 	}
 
-	/** 
-	 * Returns the filepath.
-	 * @return String
-	 */
-	public String getFilepath() {
-		return filepath;
+	public FormFile getMyFile() {
+		return myFile;
 	}
 
-	/** 
-	 * Set the filepath.
-	 * @param filepath The filepath to set
-	 */
-	public void setFilepath(String filepath) {
-		this.filepath = filepath;
+	public void setMyFile(FormFile myFile) {
+		this.myFile = myFile;
 	}
 }

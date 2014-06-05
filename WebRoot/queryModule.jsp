@@ -3,6 +3,8 @@
 
 <jsp:useBean id="gi" class="edu.fudan.util.GetBGImg" scope="session" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%> 
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -145,11 +147,15 @@ function uploadfile()
 
 	</div>
 	<div id="uploadform">
-		<form action="searchImg.do" method="post" encType="multipart/form-data">
-			<input class="file" type="file" name="filepath" id="stfile" size="1">
-			<input id="uploadtijiao" type="submit" value="查图片"
-				onClick="uploadfile();" />
-		</form>
+<!-- 		<form action="searchImg.do" method="post" encType="multipart/form-data"> -->
+<!-- 			<input class="file" type="file" name="filepath" id="stfile" size="1"> -->
+<!-- 			<input id="uploadtijiao" type="submit" value="查图片" -->
+<!-- 				onClick="uploadfile();" /> -->
+<!-- 		</form> -->
+		<html:form action="searchImg.do" method="post" enctype="multipart/form-data">
+    <html:file  property="myFile"></html:file>
+    <html:submit  value="查图片"/>
+   </html:form>
 	</div>
 </body>
 </html>

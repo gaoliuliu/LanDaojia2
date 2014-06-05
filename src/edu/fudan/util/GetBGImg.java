@@ -29,6 +29,8 @@ public class GetBGImg {
 		public static String getBingImg() 
 		{
 			   String url="http://www.bing.com";
+			   if(1==1)
+			   return "bc.jpg";
 		       String result = GetBGImg.getContent(url);
 		       try{
 		    	   result = result.substring(result.indexOf("/az/hprichbg/rb"));

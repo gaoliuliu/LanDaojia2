@@ -4,12 +4,20 @@
  */
 package edu.fudan.struts.action;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
+
+import edu.fudan.util.ocr.OCR;
 import edu.fudan.struts.form.SearchImgForm;
 
 /** 
@@ -35,10 +43,42 @@ public class SearchImgAction extends BaseAction {
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		SearchImgForm searchImgForm = (SearchImgForm) form;// TODO Auto-generated method stub
-		System.out.println("dsfsd");
 		ActionForward forward = mapping.getInputForward();
-		String filePath = searchImgForm.getFilepath();
-		System.out.println(filePath);
+		ServletContext sc=this.getServlet().getServletContext();
+		   String realPath=sc.getRealPath("/upfile/");
+		   
+		FormFile file=searchImgForm.getMyFile();
+		  String name=file.getFileName();
+		FileOutputStream fos=null;
+		try {
+		 
+		   byte[] fileData=file.getFileData();
+		   // 获得upfile目录的绝对路径
+		   
+		   fos=new FileOutputStream(realPath+"/"+name);
+		   fos.write(fileData);
+		} catch (Exception e) {
+		   e.printStackTrace();
+		}finally{ 
+		   try {
+		   fos.flush();
+		   fos.close();
+		   } catch (IOException e) {
+		    e.printStackTrace();
+		   }
+		}
+		
+		
+		 String valCode = "";
+		try {
+			valCode = new OCR().recognizeText(new File(realPath+"/"+name), "jpg");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   
+		request.setAttribute("transResult", valCode);
+          System.out.println(valCode);   
+		//System.out.println(filePath);
 		forward = mapping.findForward("suc");
 		return forward;
 	}
